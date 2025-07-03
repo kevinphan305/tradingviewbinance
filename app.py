@@ -1,3 +1,7 @@
+print("API KEY:", os.environ.get("BINANCE_API_KEY"))
+print("SECRET KEY:", os.environ.get("BINANCE_SECRET_KEY"))
+print("TESTNET:", os.environ.get("USE_TESTNET"))
+
 import os, time, logging
 from dotenv import load_dotenv          # ← nạp .env
 from binance.client import Client
