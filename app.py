@@ -21,7 +21,6 @@ symbols = ["BTCUSDT", "AVAXUSDT", "XRPUSDT", "SOLUSDT", "ADAUSDT"]
 
 
 def get_price(sym):
-    # Làm sạch và bảo đảm là chuỗi in hoa
     symbol = str(sym).strip().upper()
     return client.get_symbol_ticker(symbol=symbol)
 
@@ -30,7 +29,11 @@ if __name__ == "__main__":
         for sym in symbols:
             try:
                 ticker = get_price(sym)
-                print(f"{sym}: {ticker['price']}")
+                price  = ticker["price"]
+                logging.info(f"{sym}: {price}")      # <── ghi log
+                print(f"{sym}: {price}")             # (giữ lại để xem trực tiếp)
             except Exception as e:
-                print(f"❌ Lỗi lấy giá {sym}: {e}")
+                logging.error(f"Lỗi lấy giá {sym}: {e}")  # <── ghi lỗi
+                print(f"❌ Lỗi lấy giá {sym}: {e}")
         time.sleep(3)
+
