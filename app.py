@@ -1,21 +1,24 @@
-import logging
+import os, time, logging
+from dotenv import load_dotenv          # ← nạp .env
+from binance.client import Client
 
+# ── cấu hình ghi log ra bot.log ──────────────────────────
 logging.basicConfig(
     filename="bot.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
+# ─────────────────────────────────────────────────────────
 
-from binance.client import Client
-import os, time
+load_dotenv()                           # ← đọc BINANCE_API_KEY, BINANCE_SECRET_KEY
 
-api_key    = os.environ["BINANCE_API_KEY"]
-api_secret = os.environ["BINANCE_SECRET_KEY"]
+api_key    = os.getenv("BINANCE_API_KEY")
+api_secret = os.getenv("BINANCE_SECRET_KEY")
 
 client = Client(api_key, api_secret)
 
-# Danh sách cặp muốn lấy giá / trade
 symbols = ["BTCUSDT", "AVAXUSDT", "XRPUSDT", "SOLUSDT", "ADAUSDT"]
+
 
 def get_price(sym):
     # Làm sạch và bảo đảm là chuỗi in hoa
