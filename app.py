@@ -1,14 +1,25 @@
-import os
 from binance.client import Client
+import os, time
 
-api_key = os.getenv("BINANCE_API_KEY")
-api_secret = os.getenv("BINANCE_SECRET_KEY")
+api_key    = os.environ["BINANCE_API_KEY"]
+api_secret = os.environ["BINANCE_SECRET_KEY"]
 
 client = Client(api_key, api_secret)
 
-def get_price(symbol="AVAXUSDT,SOLUSDT,XRPUSDT,ADAUSDT,LINKUSDT,LTCUSDT,DOTUSDT,DOGEUSDT"):
-    ticker = client.get_symbol_ticker(symbol=symbol)
-    return ticker
+# Danh sách cặp muốn lấy giá / trade
+symbols = ["BTCUSDT", "AVAXUSDT", "XRPUSDT", "SOLUSDT", "ADAUSDT"]
+
+def get_price(sym):
+    # Làm sạch và bảo đảm là chuỗi in hoa
+    symbol = str(sym).strip().upper()
+    return client.get_symbol_ticker(symbol=symbol)
 
 if __name__ == "__main__":
-    print(get_price())
+    while True:
+        for sym in symbols:
+            try:
+                ticker = get_price(sym)
+                print(f"{sym}: {ticker['price']}")
+            except Exception as e:
+                print(f"❌ Lỗi lấy giá {sym}: {e}")
+        time.sleep(3)
