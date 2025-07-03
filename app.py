@@ -17,7 +17,7 @@ api_secret = os.getenv("BINANCE_SECRET_KEY")
 
 client = Client(api_key, api_secret)
 
-symbols = ["BTCUSDT", "AVAXUSDT", "XRPUSDT", "SOLUSDT", "ADAUSDT"]
+symbols = ["AVAXUSDT", "XRPUSDT", "SOLUSDT", "ADAUSDT", "LINKUSDT", "LTCUSDT", "DOTUSDT", "DOGEUSDT"]
 
 
 def get_price(sym):
