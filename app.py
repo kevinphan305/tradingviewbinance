@@ -6,7 +6,7 @@ api_secret = os.getenv("BINANCE_SECRET_KEY")
 
 client = Client(api_key, api_secret)
 
-def get_price(symbol="BTCUSDT"):
+def get_price(symbol="AVAXUSDT,SOLUSDT,XRPUSDT,ADAUSDT,LINKUSDT,LTCUSDT,DOTUSDT,DOGEUSDT"):
     ticker = client.get_symbol_ticker(symbol=symbol)
     return ticker
 
