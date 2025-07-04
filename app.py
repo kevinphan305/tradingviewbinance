@@ -84,4 +84,4 @@ if __name__ == "__main__":
             time.sleep(3)
 
     threading.Thread(target=price_loop, daemon=True).start()
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=5000)
